@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   "userName": "' . $username . '",
   "password": "' . $passwd . '"
 }';
-	$request = new Request('POST', 'https://thevolunty.azurewebsites.net/api/customers/login', $headers, $body);
+	$request = new Request('POST', BASE_URL . '/api/customers/login', $headers, $body);
 	$res = $client->sendAsync($request)->wait();
 	if ($res->getStatusCode() === 200) {
 		$response = $res->getBody();
