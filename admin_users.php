@@ -8,12 +8,6 @@ require_once BASE_PATH.'/lib/Users/Users.php';
 $users = new Users();
 
 // Only super admin is allowed to access this page
-if ($_SESSION['admin_type'] !== 'super')
-{
-    // Show permission denied message
-    header('HTTP/1.1 401 Unauthorized', true, 401);
-    exit('401 Unauthorized');
-}
 
 // Get Input data from query string
 $search_string = filter_input(INPUT_GET, 'search_string');
@@ -41,10 +35,6 @@ if (!$order_by)
     $order_by = 'Desc';
 }
 
-//Get DB instance. i.e instance of MYSQLiDB Library
-$db = getDbInstance();
-$select = array('id', 'user_name', 'admin_type');
-
 //Start building query according to input parameters.
 // If search string
 if ($search_string)
@@ -52,18 +42,6 @@ if ($search_string)
     $db->where('user_name', '%' . $search_string . '%', 'like');
 }
 
-//If order by option selected
-if ($order_by)
-{
-    $db->orderBy($filter_col, $order_by);
-}
-
-// Set pagination limit
-$db->pageLimit = $pagelimit;
-
-// Get result of the query.
-$rows = $db->arraybuilder()->paginate('admin_accounts', $page, $select);
-$total_pages = $db->totalPages;
 
 include BASE_PATH.'/includes/header.php';
 ?>

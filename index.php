@@ -3,18 +3,13 @@ session_start();
 require_once './config/config.php';
 require_once 'includes/auth_validate.php';
 
-//Get DB instance. function is defined in config.php
-$db = getDbInstance();
-
 //Get Dashboard information
-$numCustomers = $db->getValue ("customers", "count(*)");
-
 include_once('includes/header.php');
 ?>
 <div id="page-wrapper">
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">Dashboard</h1>
+            <h1 class="page-header">Admin Dashboard</h1>
         </div>
         <!-- /.col-lg-12 -->
     </div>
@@ -29,7 +24,7 @@ include_once('includes/header.php');
                         </div>
                         <div class="col-xs-9 text-right">
                             <div class="huge"><?php echo $numCustomers; ?></div>
-                            <div>Customers</div>
+                            <div>All Campaigns</div>
                         </div>
                     </div>
                 </div>
@@ -51,7 +46,7 @@ include_once('includes/header.php');
                         </div>
                         <div class="col-xs-9 text-right">
                             <div class="huge">12</div>
-                            <div>New Tasks!</div>
+                            <div>Pending Campaigns</div>
                         </div>
                     </div>
                 </div>

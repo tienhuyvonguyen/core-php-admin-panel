@@ -29,9 +29,6 @@ if (!$order_by) {
 	$order_by = 'Desc';
 }
 
-//Get DB instance. i.e instance of MYSQLiDB Library
-$db = getDbInstance();
-$select = array('id', 'f_name', 'l_name', 'gender', 'phone', 'created_at', 'updated_at');
 
 //Start building query according to input parameters.
 // If search string
@@ -40,17 +37,7 @@ if ($search_string) {
 	$db->orwhere('l_name', '%' . $search_string . '%', 'like');
 }
 
-//If order by option selected
-if ($order_by) {
-	$db->orderBy($filter_col, $order_by);
-}
 
-// Set pagination limit
-$db->pageLimit = $pagelimit;
-
-// Get result of the query.
-$rows = $db->arraybuilder()->paginate('customers', $page, $select);
-$total_pages = $db->totalPages;
 
 include BASE_PATH . '/includes/header.php';
 ?>

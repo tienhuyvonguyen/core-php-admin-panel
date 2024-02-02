@@ -9,7 +9,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Administrator</title>
+        <title>TheVolunty Administrator</title>
 
         <!-- Bootstrap Core CSS -->
         <link  rel="stylesheet" href="assets/css/bootstrap.min.css"/>
@@ -46,7 +46,7 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" href="">Administrator</a>
+                        <a class="navbar-brand" href="">TheVolunty Administrator</a>
                     </div>
                     <!-- /.navbar-header -->
 
@@ -77,7 +77,7 @@
                         <div class="sidebar-nav navbar-collapse">
                             <ul class="nav" id="side-menu">
                                 <li>
-                                    <a href="index.php"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                                    <a href="index.php"><i class="fa fa-dashboard fa-fw"></i> Admin Dashboard</a>
                                 </li>
 
                                 <li <?php echo (CURRENT_PAGE == "customers.php" || CURRENT_PAGE == "add_customer.php") ? 'class="active"' : ''; ?>>
