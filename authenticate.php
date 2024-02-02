@@ -18,15 +18,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   "userName": "' . $username . '",
   "password": "' . $passwd . '"
 }';
-	echo $body;
-	$request = new Request('POST', 'https://exe20240123205125.azurewebsites.net/api/customers/login', $headers, $body);
+	$request = new Request('POST', 'https://thevolunty.azurewebsites.net/api/customers/login', $headers, $body);
 	$res = $client->sendAsync($request)->wait();
 	if ($res->getStatusCode() === 200) {
 		$response = $res->getBody();
 		$response = json_decode($response);
 		$_SESSION['user_logged_in'] = TRUE;
 		$_SESSION['username'] = $username;
-		header('Location:index.php');
+		header('Location: index.php');
 	} else {
 		$_SESSION['login_failure'] = 'Invalid username or password';
 		header('Location:login.php');
