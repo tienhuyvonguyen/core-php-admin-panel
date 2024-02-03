@@ -2,6 +2,8 @@
 session_start();
 require_once 'config/config.php';
 $token = bin2hex(openssl_random_pseudo_bytes(16));
+require_once BASE_PATH.'/includes/header.php';
+
 ?>
 <!-- set background image -->
 <style>

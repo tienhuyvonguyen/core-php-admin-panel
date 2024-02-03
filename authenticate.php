@@ -1,6 +1,6 @@
 <?php
 require_once './config/config.php';
-require 'vendor/autoload.php';
+require_once 'vendor/autoload.php';
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Client;
 
