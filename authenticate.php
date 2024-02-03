@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	if ($res->getStatusCode() === 200) {
 		$response = $res->getBody();
 		$response = json_decode($response);
-		$_SESSION['user_logged_in'] = TRUE;
+		$_SESSION['user_logged_in'] = true;
 		$_SESSION['username'] = $username;
 		header('Location: index.php');
 	} else {

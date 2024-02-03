@@ -61,7 +61,7 @@
                             <ul class="dropdown-menu dropdown-user">
                                 <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
                                 </li>
-                                <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                                <li><a href="#"><i class="fa fa-gear fa-fw"></i> Change Password</a>
                                 </li>
                                 <li class="divider"></li>
                                 <li><a href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
@@ -77,22 +77,34 @@
                         <div class="sidebar-nav navbar-collapse">
                             <ul class="nav" id="side-menu">
                                 <li>
-                                    <a href="index.php"><i class="fa fa-dashboard fa-fw"></i> Admin Dashboard</a>
+                                    <a href="index.php"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                                 </li>
 
-                                <li <?php echo (CURRENT_PAGE == "customers.php" || CURRENT_PAGE == "add_customer.php") ? 'class="active"' : ''; ?>>
-                                    <a href="#"><i class="fa fa-user-circle fa-fw"></i> Customers<span class="fa arrow"></span></a>
+                                <li <?php echo (CURRENT_PAGE == "pending_camp.php" || CURRENT_PAGE == "running_camp.php" || CURRENT_PAGE == "add_camp.php") ? 'class="active"' : ''; ?>>
+                                    <a href="#"><i class="fa fa-tasks fa-fw"></i> Campaigns<span class="fa arrow"></span></a>
                                     <ul class="nav nav-second-level">
                                         <li>
-                                            <a href="customers.php"><i class="fa fa-list fa-fw"></i>List all</a>
+                                            <a href="pending_camp.php"><i class="fa fa-tasks fa-fw"></i>Pending Campaigns</a>
+                                        </li>
+                                        <li>
+                                            <a href="running_camp.php"><i class="fa fa-tasks fa-fw"></i>Running Campaigns</a>
                                         </li>
                                     <li>
-                                        <a href="add_customer.php"><i class="fa fa-plus fa-fw"></i>Add New</a>
+                                        <a href="add_camp.php"><i class="fa fa-plus fa-fw "></i>Add New Campaign</a>
                                     </li>
                                     </ul>
                                 </li>
-                                <li>
-                                    <a href="admin_users.php"><i class="fa fa-users fa-fw"></i> Users</a>
+
+                                <li <?php echo (CURRENT_PAGE == "all_org.php" || CURRENT_PAGE == "add_org.php") ? 'class="active"' : ''; ?>>
+                                    <a href="#"><i class="fa fa-users fa-fw"></i> Organizations<span class="fa arrow"></span></a>
+                                    <ul class="nav nav-second-level">
+                                        <li>
+                                            <a href="all_org.php"><i class="fa fa-users fa-fw"></i>All Organizations</a>
+                                        </li>
+                                    <li>
+                                        <a href="add_org.php"><i class="fa fa-plus fa-fw "></i>Add New Organizations</a>
+                                    </li>
+                                    </ul>
                                 </li>
                             </ul>
                         </div>
