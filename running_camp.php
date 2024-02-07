@@ -29,11 +29,19 @@ include_once BASE_PATH . '/includes/header.php';
     <div class="well text-center filter-form">
         <form class="form form-inline" action="">
             <label for="search_string">Search</label>
-            <input type="text" class="form-control" id="search_string" name="search_string"
-                value="<?php echo $search_string; ?>">
+            <input type="text" class="form-control" id="search_string" name="search_string">
             <input type="submit" value="Go" class="btn btn-primary">
         </form>
     </div>
+    <?php
+    $search_string = filter_input(INPUT_GET, 'search_string');
+    // filter from the front end
+    if ($search_string) {
+        $request = new Request('GET', BASE_URL . '/api/campaigns?page=1&size=100&status=1&name=' . $search_string . '&location=', $headers);
+        $res = $client->sendAsync($request)->wait();
+        $response = json_decode($res->getBody()->getContents());
+    }
+    ?>
     <!-- //Filter -->
 
     <div id="export-section">
@@ -64,7 +72,7 @@ include_once BASE_PATH . '/includes/header.php';
                 }
                 echo '<td>' . $response[$i]->campStatus . '</td>';
                 echo '<td>';
-                echo '<a href="camp_detail.php?id=' . $response[$i]->campId .'" class="btn btn-primary"><i class="glyphicon glyphicon-eye-open"></i></a> ';
+                echo '<a href="camp_detail.php?id=' . $response[$i]->campId . '" class="btn btn-primary"><i class="glyphicon glyphicon-eye-open"></i></a> ';
                 echo '</td>';
                 echo '</tr>';
             }
@@ -72,9 +80,9 @@ include_once BASE_PATH . '/includes/header.php';
         </tbody>
     </table>
     <!-- //Table -->
-        <!-- Pagination -->
-    </div>
-    <!-- //Pagination -->
+    <!-- Pagination -->
+</div>
+<!-- //Pagination -->
 </div>
 <!-- //Main container -->
 <?php include_once BASE_PATH . '/includes/footer.php'; ?>

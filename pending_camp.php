@@ -25,31 +25,44 @@ include_once BASE_PATH . '/includes/header.php';
         </div>
     </div>
     <?php include_once BASE_PATH . '/includes/flash_messages.php'; ?>
+
     <!-- Filter -->
     <div class="well text-center filter-form">
         <form class="form form-inline" action="">
             <label for="search_string">Search</label>
-            <input type="text" class="form-control" id="search_string" name="search_string"
-                value="<?php echo $search_string; ?>">
+            <input type="text" class="form-control" id="search_string" name="search_string">
             <input type="submit" value="Go" class="btn btn-primary">
         </form>
     </div>
+    <?php
+    $search_string = filter_input(INPUT_GET, 'search_string');
+    // filter from the front end
+    if ($search_string) {
+        $request = new Request('GET', BASE_URL . '/api/campaigns?page=1&size=100&status=0&name=' . $search_string . '&location=', $headers);
+        $res = $client->sendAsync($request)->wait();
+        $response = json_decode($res->getBody()->getContents());
+    }
+    ?>
     <!-- //Filter -->
 
+    <!-- Export -->
     <div id="export-section">
         <a href="export_customers.php"><button class="btn btn-sm btn-primary">Export to CSV <i
                     class="glyphicon glyphicon-export"></i></button></a>
     </div>
+    <!-- //Export -->
 
     <!-- Table -->
     <table class="table table-striped table-bordered table-condensed">
         <thead>
             <tr>
                 <th width="3%">ID</th>
-                <th width="40%">Campaign Name</th>
-                <th width="20%">Host</th>
-                <th width="20%">Status</th>
-                <th width="10%">Actions</th>
+                <th width="35%">Campaign Name</th>
+                <th width="10%">Host</th>
+                <th width="10%">Location</th>
+                <th width="10%">Create Date</th>
+                <th width="10%">Status</th>
+                <th width="6%">Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -59,12 +72,14 @@ include_once BASE_PATH . '/includes/header.php';
                 echo '<td>' . $response[$i]->campId . '</td>';
                 echo '<td>' . $response[$i]->campName . '</td>';
                 echo '<td>' . $response[$i]->campHost . '</td>';
+                echo '<td>' . $response[$i]->campLocation . '</td>';
+                echo '<td>' . $response[$i]->campCreateDate . '</td>';
                 if ($response[$i]->campStatus == 0) {
                     $response[$i]->campStatus = 'Pending Approval';
                 }
                 echo '<td>' . $response[$i]->campStatus . '</td>';
                 echo '<td>';
-                echo '<a href="camp_detail.php?id=' . $response[$i]->campId .'" class="btn btn-primary"><i class="glyphicon glyphicon-eye-open"></i></a> ';
+                echo '<a href="camp_detail.php?id=' . $response[$i]->campId . '" class="btn btn-primary"><i class="glyphicon glyphicon-eye-open"></i></a> ';
                 echo '<a href="valid_camp.php" class="btn btn-success"><i class="glyphicon glyphicon-check"></i></a> ';
                 echo '</td>';
                 echo '</tr>';
@@ -73,9 +88,6 @@ include_once BASE_PATH . '/includes/header.php';
         </tbody>
     </table>
     <!-- //Table -->
-        <!-- Pagination -->
-    </div>
-    <!-- //Pagination -->
 </div>
 <!-- //Main container -->
 <?php include_once BASE_PATH . '/includes/footer.php'; ?>

@@ -15,10 +15,6 @@ if (empty($id)) {
     header('location: pending_camp.php');
     exit();
 }
-if ($id == null) {
-    header('location: pending_camp.php');
-    exit();
-}
 $client = new Client();
 $headers = [
     'Accept' => 'text/plain',
@@ -45,72 +41,55 @@ include_once 'includes/header.php';
             </div>
 
             <div class="form-group">
-                <label for="l_name">Last name *</label>
+                <label for="l_name">Organization</label>
                 <input type="text" name="l_name"
-                    value="<?php echo htmlspecialchars($edit ? $customer['l_name'] : '', ENT_QUOTES, 'UTF-8'); ?>"
+                    value="<?php echo htmlspecialchars($response->campHost, ENT_QUOTES, 'UTF-8'); ?>"
                     placeholder="Last Name" class="form-control" required="required" id="l_name">
             </div>
 
             <div class="form-group">
-                <label>Gender * </label>
+                <label>Approval</label>
                 <label class="radio-inline">
-                    <input type="radio" name="gender" value="male" <?php echo ($edit && $customer['gender'] == 'male') ? "checked" : ""; ?> required="required" /> Male
+                    <input type="radio" name="status" value="Approved" <?php echo ($response->campStatus == 1) ? "checked" : ""; ?> required="required" /> Approved
                 </label>
                 <label class="radio-inline">
-                    <input type="radio" name="gender" value="female" <?php echo ($edit && $customer['gender'] == 'female') ? "checked" : ""; ?> required="required" id="female" /> Female
+                    <input type="radio" name="status" value="Denied" <?php echo ($response->campStatus == 0) ? "checked" : ""; ?> required="required" id="Denied" /> Pending
                 </label>
             </div>
 
             <div class="form-group">
-                <label for="address">Address</label>
+                <label for="address">Campaign Activity</label>
                 <textarea name="address" placeholder="Address" class="form-control"
-                    id="address"><?php echo htmlspecialchars(($edit) ? $customer['address'] : '', ENT_QUOTES, 'UTF-8'); ?></textarea>
+                    id="address"><?php echo htmlspecialchars($response->activities[1], ENT_QUOTES, 'UTF-8'); ?></textarea>
             </div>
 
             <div class="form-group">
-                <label>State </label>
-                <?php $opt_arr = array("Maharashtra", "Kerala", "Madhya pradesh");
-                ?>
-                <select name="state" class="form-control selectpicker" required>
-                    <option value=" ">Please select your state</option>
-                    <?php
-                    foreach ($opt_arr as $opt) {
-                        if ($edit && $opt == $customer['state']) {
-                            $sel = "selected";
-                        } else {
-                            $sel = "";
-                        }
-                        echo '<option value="' . $opt . '"' . $sel . '>' . $opt . '</option>';
-                    }
-
-                    ?>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" name="email"
-                    value="<?php echo htmlspecialchars($edit ? $customer['email'] : '', ENT_QUOTES, 'UTF-8'); ?>"
-                    placeholder="E-Mail Address" class="form-control" id="email">
+                <label for="l_name">Location</label>
+                <input type="text" name="l_name"
+                    value="<?php echo htmlspecialchars($response->campLocation, ENT_QUOTES, 'UTF-8'); ?>"
+                    placeholder="Last Name" class="form-control" required="required" id="l_name">
             </div>
 
             <div class="form-group">
-                <label for="phone">Phone</label>
-                <input name="phone"
-                    value="<?php echo htmlspecialchars($edit ? $customer['phone'] : '', ENT_QUOTES, 'UTF-8'); ?>"
-                    placeholder="987654321" class="form-control" type="text" id="phone">
+                <label for="date">Start Date</label>
+                <input name="date"
+                    value="<?php echo htmlspecialchars($response->campStartDate, ENT_QUOTES, 'UTF-8'); ?>"
+                    class="form-control" type="text" id="date">
             </div>
 
             <div class="form-group">
-                <label>Date of birth</label>
-                <input name="date_of_birth"
-                    value="<?php echo htmlspecialchars($edit ? $customer['date_of_birth'] : '', ENT_QUOTES, 'UTF-8'); ?>"
-                    placeholder="Birth date" class="form-control" type="date">
+                <label>Create Date </label>
+                <input name="date"
+                    value="<?php echo htmlspecialchars($response->campCreateDate, ENT_QUOTES, 'UTF-8'); ?>"
+                    class="form-control" type="text">
             </div>
 
             <div class="form-group text-center">
                 <label></label>
                 <button href="./pending_camp.php" type="submit" class="btn btn-warning">Back <span
-                        class="glyphicon glyphicon-back"></span></button>
+                        class="glyphicon glyphicon glyphicon-arrow-left"></span></button>
+                <button href="./update_camp.php" type="submit" class="btn btn-warning">Update <span
+                        class="glyphicon glyphicon-send"></span></button>
             </div>
         </fieldset>
     </form>
