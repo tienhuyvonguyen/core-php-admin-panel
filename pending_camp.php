@@ -80,7 +80,7 @@ include_once BASE_PATH . '/includes/header.php';
                 echo '<td>' . $response[$i]->campStatus . '</td>';
                 echo '<td>';
                 echo '<a href="camp_detail.php?id=' . $response[$i]->campId . '" class="btn btn-primary"><i class="glyphicon glyphicon-eye-open"></i></a> ';
-                echo '<a href="valid_camp.php" class="btn btn-success"><i class="glyphicon glyphicon-check"></i></a> ';
+                echo '<a href="valid_camp.php?id= ' . $response[$i]->campId . '" class="btn btn-success"><i class="glyphicon glyphicon-check"></i></a> ';
                 echo '</td>';
                 echo '</tr>';
             }
