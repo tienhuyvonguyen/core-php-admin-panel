@@ -11,14 +11,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 	$client = new Client();
 	$headers = [
-		'Content-Type' => 'application/json',
-		'Cookie' => 'ARRAffinity=92ca53ad8db4fbb93d4d3b7d8ab54dcf8ffecb2d731f25b0e91ad575d7534c3f; ARRAffinitySameSite=92ca53ad8db4fbb93d4d3b7d8ab54dcf8ffecb2d731f25b0e91ad575d7534c3f'
+		'Content-Type' => 'application/json'
 	];
 	$body = '{
-  "userName": "' . $username . '",
-  "password": "' . $passwd . '"
-}';
-	$request = new Request('POST', BASE_URL . '/api/customers/login', $headers, $body);
+		"userName": "' . $username . '",
+		"password": "' . $passwd . '"
+	}';
+	$request = new Request('POST', BASE_URL . '/api/admins/login', $headers, $body);
 	$res = $client->sendAsync($request)->wait();
 	if ($res->getStatusCode() === 200) {
 		$response = $res->getBody();

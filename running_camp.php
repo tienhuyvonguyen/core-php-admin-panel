@@ -72,7 +72,7 @@ include_once BASE_PATH . '/includes/header.php';
                 }
                 echo '<td>' . $response[$i]->campStatus . '</td>';
                 echo '<td>';
-                echo '<a href="camp_detail.php?id=' . $response[$i]->campId . '" class="btn btn-primary"><i class="glyphicon glyphicon-eye-open"></i></a> ';
+                echo '<a href="camp_detail.php?id=' . $response[$i]->campId . '" class="btn btn-primary"><i class="glyphicon glyphicon-edit"></i></a> ';
                 echo '</td>';
                 echo '</tr>';
             }

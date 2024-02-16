@@ -8,12 +8,21 @@ use GuzzleHttp\Client;
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $id = filter_input(INPUT_GET, 'id');
-} else {
+    $status = 1;
+    $client = new Client();
+    $request = new Request('GET', BASE_URL . '/api/campaigns/update-campaign-status?id=' . $id . '&status=' . $status);
+    $res = $client->sendAsync($request)->wait();
+    // alert message
+    $_SESSION['info'] = "Campaign approved successfully!";
+    header('Location: pending_camp.php');
+}
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $id = filter_input(INPUT_POST, 'id');
+    $client = new Client();
+    $request = new Request('GET', BASE_URL . '/api/campaigns/update-campaign-status?id=' . $id . '&status=' . $status);
+    $res = $client->sendAsync($request)->wait();
+    // alert message
+    $_SESSION['info'] = "Campaign update successfully!";
+    header('Location: pending_camp.php');
 }
-if (empty($id)) {
-    header('location: pending_camp.php');
-    exit();
-}
-
-

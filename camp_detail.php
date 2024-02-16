@@ -28,6 +28,7 @@ include_once 'includes/header.php';
 ?>
 
 <div id="page-wrapper">
+    <input type="hidden" name="id" value="<?php echo $response->campId; ?>">
     <div class="row">
         <h2 class="page-header">Campaign Details</h2>
     </div>
@@ -37,20 +38,21 @@ include_once 'includes/header.php';
                 <label for="f_name">Campaign Name</label>
                 <input type="text" name="f_name"
                     value="<?php echo htmlspecialchars($response->campName, ENT_QUOTES, 'UTF-8'); ?>"
-                    placeholder="First Name" class="form-control" required="required" id="f_name">
+                    placeholder="First Name" class="form-control" required="required" id="f_name" readonly>
             </div>
 
             <div class="form-group">
                 <label for="l_name">Organization</label>
                 <input type="text" name="l_name"
                     value="<?php echo htmlspecialchars($response->campHost, ENT_QUOTES, 'UTF-8'); ?>"
-                    placeholder="Last Name" class="form-control" required="required" id="l_name">
+                    placeholder="Last Name" class="form-control" required="required" id="l_name" readonly>
             </div>
 
             <div class="form-group">
-                <label>Approval</label>
+                <label>Approval Status</label>
                 <label class="radio-inline">
-                    <input type="radio" name="status" value="Approved" <?php echo ($response->campStatus == 1) ? "checked" : ""; ?> required="required" /> Approved
+                    <input type="radio" name="status" value="Approved" <?php echo ($response->campStatus == 1) ? "checked" : ""; ?> required="required" id="Approved" />
+                    Approved
                 </label>
                 <label class="radio-inline">
                     <input type="radio" name="status" value="Denied" <?php echo ($response->campStatus == 0) ? "checked" : ""; ?> required="required" id="Denied" /> Pending
@@ -58,37 +60,31 @@ include_once 'includes/header.php';
             </div>
 
             <div class="form-group">
-                <label for="address">Campaign Activity</label>
-                <textarea name="address" placeholder="Address" class="form-control"
-                    id="address"><?php echo htmlspecialchars($response->activities[1], ENT_QUOTES, 'UTF-8'); ?></textarea>
-            </div>
-
-            <div class="form-group">
                 <label for="l_name">Location</label>
                 <input type="text" name="l_name"
                     value="<?php echo htmlspecialchars($response->campLocation, ENT_QUOTES, 'UTF-8'); ?>"
-                    placeholder="Last Name" class="form-control" required="required" id="l_name">
+                    placeholder="Last Name" class="form-control" required="required" id="l_name" readonly>
             </div>
 
             <div class="form-group">
                 <label for="date">Start Date</label>
                 <input name="date"
                     value="<?php echo htmlspecialchars($response->campStartDate, ENT_QUOTES, 'UTF-8'); ?>"
-                    class="form-control" type="text" id="date">
+                    class="form-control" type="text" id="date" readonly>
             </div>
 
             <div class="form-group">
                 <label>Create Date </label>
                 <input name="date"
                     value="<?php echo htmlspecialchars($response->campCreateDate, ENT_QUOTES, 'UTF-8'); ?>"
-                    class="form-control" type="text">
+                    class="form-control" type="text" readonly>
             </div>
 
             <div class="form-group text-center">
                 <label></label>
                 <button href="./pending_camp.php" type="submit" class="btn btn-warning">Back <span
                         class="glyphicon glyphicon glyphicon-arrow-left"></span></button>
-                <button href="./update_camp.php" type="submit" class="btn btn-warning">Update <span
+                <button href="./valid_camp.php" type="submit" class="btn btn-warning">Update Status <span
                         class="glyphicon glyphicon-send"></span></button>
             </div>
         </fieldset>
