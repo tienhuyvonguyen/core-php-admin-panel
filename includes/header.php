@@ -94,7 +94,6 @@
                                     </li>
                                     </ul>
                                 </li>
-
                                 <li <?php echo (CURRENT_PAGE == "all_org.php" || CURRENT_PAGE == "add_org.php") ? 'class="active"' : ''; ?>>
                                     <a href="#"><i class="fa fa-users fa-fw"></i> Organizations<span class="fa arrow"></span></a>
                                     <ul class="nav nav-second-level">
@@ -103,6 +102,18 @@
                                         </li>
                                     <li>
                                         <a href="add_org.php"><i class="fa fa-plus fa-fw "></i>Add New Organizations</a>
+                                    </li>
+                                    </ul>
+                                </li>
+
+                                <li <?php echo (CURRENT_PAGE == "all_users.php" || CURRENT_PAGE == "add_user.php") ? 'class="active"' : ''; ?>>
+                                    <a href="#"><i class="fa fa-user fa-fw"></i> Customers<span class="fa arrow"></span></a>
+                                    <ul class="nav nav-second-level">
+                                        <li>
+                                            <a href="all_users.php"><i class="fa fa-user fa-fw"></i>All Customers</a>
+                                        </li>
+                                    <li>
+                                        <a href="all_users.php"><i class="fa fa-plus fa-fw "></i>Add New Customer</a>
                                     </li>
                                     </ul>
                                 </li>

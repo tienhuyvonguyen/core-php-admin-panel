@@ -12,7 +12,7 @@ $headers = [
     'Accept' => 'text/plain',
     'Cookie' => 'ARRAffinity=36ae3f6c623e7840df1db49ef792657ca1b1561c3130f830afaf34b847cdec87; ARRAffinitySameSite=36ae3f6c623e7840df1db49ef792657ca1b1561c3130f830afaf34b847cdec87'
 ];
-$request = new Request('GET', BASE_URL . '/api/campaigns?page=1&size=100&status=0&name=&location=', $headers);
+$request = new Request('GET', BASE_URL . '/api/campaigns', $headers);
 $res = $client->sendAsync($request)->wait();
 $response = json_decode($res->getBody()->getContents());
 include_once BASE_PATH . '/includes/header.php';
@@ -32,18 +32,9 @@ include_once BASE_PATH . '/includes/header.php';
             <label for="search_string">Search</label>
             <input type="text" class="form-control" id="search_string" name="search_string">
             <input type="submit" value="Go" class="btn btn-primary">
+            <?php $search_string = filter_input(INPUT_GET, 'search_string'); ?>
         </form>
     </div>
-    <?php
-    $search_string = filter_input(INPUT_GET, 'search_string');
-    // filter from the front end
-    if ($search_string) {
-        $request = new Request('GET', BASE_URL . '/api/campaigns?page=1&size=100&status=0&name=' . $search_string . '&location=', $headers);
-        $res = $client->sendAsync($request)->wait();
-        $response = json_decode($res->getBody()->getContents());
-    }
-    ?>
-    <!-- //Filter -->
 
     <!-- Export -->
     <div id="export-section">
@@ -68,6 +59,12 @@ include_once BASE_PATH . '/includes/header.php';
         <tbody>
             <?php
             for ($i = 0; $i < count($response); $i++) {
+                if ($response[$i]->campStatus == 1) {
+                    continue;
+                }
+                if ($search_string && !stristr($response[$i]->campName, $search_string)) {
+                    continue;
+                }
                 echo '<tr>';
                 echo '<td>' . $response[$i]->campId . '</td>';
                 echo '<td>' . $response[$i]->campName . '</td>';
