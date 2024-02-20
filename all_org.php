@@ -23,6 +23,11 @@ include_once BASE_PATH . '/includes/header.php';
         <div class="col-lg-6">
             <h1 class="page-header">All Organizations</h1>
         </div>
+        <div class="col-lg-6">
+            <div class="page-action-links text-right">
+                <a href="add_org.php" class="btn btn-success"><i class="glyphicon glyphicon-plus"></i> Add new</a>
+            </div>
+        </div>
     </div>
     <?php include_once BASE_PATH . '/includes/flash_messages.php'; ?>
     <!-- Filter -->

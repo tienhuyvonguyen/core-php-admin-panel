@@ -89,9 +89,6 @@
                                         <li>
                                             <a href="running_camp.php"><i class="fa fa-tasks fa-fw"></i>Running Campaigns</a>
                                         </li>
-                                    <li>
-                                        <a href="add_camp.php"><i class="fa fa-plus fa-fw "></i>Add New Campaign</a>
-                                    </li>
                                     </ul>
                                 </li>
                                 <li <?php echo (CURRENT_PAGE == "all_org.php" || CURRENT_PAGE == "add_org.php") ? 'class="active"' : ''; ?>>
@@ -100,9 +97,6 @@
                                         <li>
                                             <a href="all_org.php"><i class="fa fa-users fa-fw"></i>All Organizations</a>
                                         </li>
-                                    <li>
-                                        <a href="add_org.php"><i class="fa fa-plus fa-fw "></i>Add New Organizations</a>
-                                    </li>
                                     </ul>
                                 </li>
 
@@ -112,10 +106,10 @@
                                         <li>
                                             <a href="all_users.php"><i class="fa fa-user fa-fw"></i>All Customers</a>
                                         </li>
-                                    <li>
-                                        <a href="all_users.php"><i class="fa fa-plus fa-fw "></i>Add New Customer</a>
-                                    </li>
                                     </ul>
+                                </li>
+                                <li <?php echo (CURRENT_PAGE == "all_users.php" || CURRENT_PAGE == "add_user.php") ? 'class="active"' : ''; ?>>
+                                    <a href="#"><i class="fa fa-comments fa-fw"></i> Zalo Chatbox<span class="fa arrow"></span></a>
                                 </li>
                             </ul>
                         </div>

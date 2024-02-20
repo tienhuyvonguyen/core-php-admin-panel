@@ -13,6 +13,10 @@ class ComposerStaticInit045658d81f6d9d3243e731dda7bf04d1
     );
 
     public static $prefixLengthsPsr4 = array (
+        'Z' => 
+        array (
+            'Zalo\\' => 5,
+        ),
         'P' => 
         array (
             'Psr\\Http\\Message\\' => 17,
@@ -27,6 +31,10 @@ class ComposerStaticInit045658d81f6d9d3243e731dda7bf04d1
     );
 
     public static $prefixDirsPsr4 = array (
+        'Zalo\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/zaloplatform/zalo-php-sdk/src',
+        ),
         'Psr\\Http\\Message\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/http-factory/src',

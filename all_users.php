@@ -12,7 +12,7 @@ $headers = [
     'Accept' => 'text/plain',
     'Cookie' => 'ARRAffinity=36ae3f6c623e7840df1db49ef792657ca1b1561c3130f830afaf34b847cdec87; ARRAffinitySameSite=36ae3f6c623e7840df1db49ef792657ca1b1561c3130f830afaf34b847cdec87'
 ];
-$request = new Request('GET', BASE_URL . '/api/customers', $headers);
+$request = new Request('GET', BASE_URL . '/api/customers?page=1&size=100', $headers);
 $res = $client->sendAsync($request)->wait();
 $response = json_decode($res->getBody()->getContents());
 include_once BASE_PATH . '/includes/header.php';
@@ -22,6 +22,11 @@ include_once BASE_PATH . '/includes/header.php';
     <div class="row">
         <div class="col-lg-6">
             <h1 class="page-header">All Customers</h1>
+        </div>
+        <div class="col-lg-6">
+            <div class="page-action-links text-right">
+                <a href="add_user.php" class="btn btn-success"><i class="glyphicon glyphicon-plus"></i> Add new</a>
+            </div>
         </div>
     </div>
     <?php include_once BASE_PATH . '/includes/flash_messages.php'; ?>
@@ -45,8 +50,8 @@ include_once BASE_PATH . '/includes/header.php';
         <thead>
             <tr>
                 <th width="3%">ID</th>
-                <th width="40%">Organization Name</th>
-                <th width="20%">Organization Email</th>
+                <th width="40%">Customer Name</th>
+                <th width="20%">Customer Email</th>
                 <th width="20%">Status</th>
                 <th width="10%">Actions</th>
             </tr>
@@ -54,18 +59,25 @@ include_once BASE_PATH . '/includes/header.php';
         <tbody>
             <?php
             for ($i = 0; $i < count($response); $i++) {
-                if ($search_string && !stristr($response[$i]->orgName, $search_string)) {
+                if ($search_string && !stristr($response[$i]->custName, $search_string)) {
                     continue;
                 }
                 echo '<tr>';
-                echo '<td>' . $response[$i]->orgId . '</td>';
-                echo '<td>' . $response[$i]->orgName . '</td>';
-                echo '<td>' . $response[$i]->orgEmail . '</td>';
-                echo '<td>' . $response[$i]->orgStatus . '</td>';
+                echo '<td>' . $response[$i]->custId . '</td>';
+                echo '<td>' . $response[$i]->custName . '</td>';
+                echo '<td>' . $response[$i]->custEmail . '</td>';
+                echo '<td>' . $response[$i]->custStatus . '</td>';
                 echo '<td>';
-                echo '<a href="org_detail.php?id=' . $response[$i]->orgId . '" class="btn btn-primary">View</a>';
+                echo '<a href="org_detail.php?id=' . $response[$i]->custId . '" class="btn btn-primary">View</a>';
                 echo '</td>';
                 echo '</tr>';
+                if (isset($_SESSION['success'])) {
+                    echo '<div class="alert alert-success">' . $_SESSION['success'] . '</div>';
+                    unset($_SESSION['success']);
+                } elseif (isset($_SESSION['failure'])) {
+                    echo '<div class="alert alert-danger">' . $_SESSION['failure'] . '</div>';
+                    unset($_SESSION['failure']);
+                }
             }
             ?>
         </tbody>
