@@ -23,7 +23,7 @@ $headers = [
 $request = new Request('GET', BASE_URL . '/api/campaigns/' . $id, $headers);
 $res = $client->sendAsync($request)->wait();
 $response = json_decode($res->getBody()->getContents());
-
+$id = $response->campId;
 include_once 'includes/header.php';
 ?>
 

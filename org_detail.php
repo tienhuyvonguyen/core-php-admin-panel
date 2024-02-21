@@ -23,7 +23,7 @@ $headers = [
 $request = new Request('GET', BASE_URL . '/api/organizations/' . $id, $headers);
 $res = $client->sendAsync($request)->wait();
 $response = json_decode($res->getBody()->getContents());
-
+$campList = $response->campaignList;
 include_once 'includes/header.php';
 ?>
 
@@ -42,13 +42,6 @@ include_once 'includes/header.php';
             </div>
 
             <div class="form-group">
-                <label for="l_name">Organization</label>
-                <input type="text" name="l_name"
-                    value="<?php echo htmlspecialchars($response->campHost, ENT_QUOTES, 'UTF-8'); ?>"
-                    placeholder="Last Name" class="form-control" required="required" id="l_name" readonly>
-            </div>
-
-            <div class="form-group">
                 <label>Approval Status</label>
                 <label class="radio-inline">
                     <input type="radio" name="status" value="Approved" <?php echo ($response->orgStatus == 1) ? "checked" : ""; ?> required="required" id="Approved" />
@@ -60,26 +53,38 @@ include_once 'includes/header.php';
             </div>
 
             <div class="form-group">
-                <label for="l_name">Location</label>
-                <input type="text" name="l_name"
-                    value="<?php echo htmlspecialchars($response->campLocation, ENT_QUOTES, 'UTF-8'); ?>"
-                    placeholder="Last Name" class="form-control" required="required" id="l_name" readonly>
-            </div>
-
-            <div class="form-group">
-                <label for="date">Start Date</label>
-                <input name="date"
-                    value="<?php echo htmlspecialchars($response->campStartDate, ENT_QUOTES, 'UTF-8'); ?>"
-                    class="form-control" type="text" id="date" readonly>
-            </div>
-
-            <div class="form-group">
                 <label>Create Date </label>
                 <input name="date"
                     value="<?php echo htmlspecialchars($response->campCreateDate, ENT_QUOTES, 'UTF-8'); ?>"
                     class="form-control" type="text" readonly>
             </div>
 
+            <div>
+                <!-- show all organizations campaigns in a table -->
+                <h3>Organization Campaigns</h3>
+                <table class="table table-striped table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th width="5%">ID</th>
+                            <th width="20%">Campaign Name</th>
+                            <th width="10%">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        for ($i = 0; $i < count($campList); $i++) {
+                            echo '<tr>';
+                            echo '<td>' . $campList[$i]->campId . '</td>';
+                            echo '<td>' . $campList[$i]->campName . '</td>';
+                            echo '<td>';
+                            echo '<a href="camp_detail.php?id=' . $campList[$i]->campId . '" class="btn btn-primary">View</a>';
+                            echo '</td>';
+                            echo '</tr>';
+                        }
+                        ?>
+                    </tbody>
+                </table>
+            </div>
             <div class="form-group text-center">
                 <label></label>
                 <button href="./pending_camp.php" type="submit" class="btn btn-warning">Back <span

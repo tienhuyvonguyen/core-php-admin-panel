@@ -68,7 +68,7 @@ include_once BASE_PATH . '/includes/header.php';
                 echo '<td>' . $response[$i]->custEmail . '</td>';
                 echo '<td>' . $response[$i]->custStatus . '</td>';
                 echo '<td>';
-                echo '<a href="org_detail.php?id=' . $response[$i]->custId . '" class="btn btn-primary">View</a>';
+                echo '<a href="user_detail.php?id=' . $response[$i]->custId . '" class="btn btn-primary">View</a>';
                 echo '</td>';
                 echo '</tr>';
                 if (isset($_SESSION['success'])) {

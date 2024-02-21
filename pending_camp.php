@@ -53,12 +53,12 @@ include_once BASE_PATH . '/includes/header.php';
         <thead>
             <tr>
                 <th width="3%">ID</th>
-                <th width="30%">Campaign Name</th>
+                <th width="20%">Campaign Name</th>
                 <th width="10%">Host</th>
                 <th width="10%">Location</th>
                 <th width="10%">Create Date</th>
                 <th width="10%">Status</th>
-                <th width="15%">Actions</th>
+                <th width="10%">Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -81,8 +81,9 @@ include_once BASE_PATH . '/includes/header.php';
                 }
                 echo '<td>' . $response[$i]->campStatus . '</td>';
                 echo '<td>';
-                echo '<a href="camp_detail.php?id=' . $response[$i]->campId . '" class="btn btn-primary">View</a> ';
-                echo '<a href="valid_camp.php?id=' . $response[$i]->campId . '" class="btn btn-success">Validate</a> ';
+                echo '<a href="camp_detail.php?id=' . $response[$i]->campId . '"class="btn btn-primary"><i class="glyphicon glyphicon-eye-open"></i></a> ';
+                echo '<a href="valid_camp.php?id=' . $response[$i]->campId . '" class="btn btn-success"><i class="glyphicon glyphicon-ok"></i></a> ';
+                echo '<a href="remove_camp.php?id=' . $response[$i]->campId . '" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i></a> ';
                 // alert message approved successfully
                 if (isset($_SESSION['info'])) {
                     echo '<div class="alert alert-success" role="alert">' . $_SESSION['info'] . '</div>';

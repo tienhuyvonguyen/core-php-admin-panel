@@ -97,6 +97,9 @@
                                         <li>
                                             <a href="all_org.php"><i class="fa fa-users fa-fw"></i>All Organizations</a>
                                         </li>
+                                        <li>
+                                            <a href="pending_org.php"><i class="fa fa-users fa-fw"></i>Pending Approval</a>
+                                        </li>
                                     </ul>
                                 </li>
 
