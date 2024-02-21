@@ -56,7 +56,6 @@ include_once BASE_PATH . '/includes/header.php';
                 <th width="20%">Organization Name</th>
                 <th width="10%">Email</th>
                 <th width="10%">Status</th>
-                <th width="10%">Phone</th>
                 <th width="10%">Actions</th>
             </tr>
         </thead>
@@ -70,10 +69,9 @@ include_once BASE_PATH . '/includes/header.php';
                     continue;
                 }
                 echo '<tr>';
-                echo '<td>' . $response[$i]->orgId . '</td>';
+                echo '<td>' . $i . '</td>';
                 echo '<td>' . $response[$i]->orgName . '</td>';
                 echo '<td>' . $response[$i]->orgEmail . '</td>';
-                echo '<td>' . $response[$i]->orgPhone . '</td>';
                 if ($response[$i]->orgStatus == 0) {
                     $response[$i]->orgStatus = 'Pending Approval';
                 }

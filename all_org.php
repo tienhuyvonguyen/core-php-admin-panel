@@ -63,10 +63,14 @@ include_once BASE_PATH . '/includes/header.php';
                     continue;
                 }
                 echo '<tr>';
-                echo '<td>' . $response[$i]->orgId . '</td>';
+                echo '<td>' . $i . '</td>';
                 echo '<td>' . $response[$i]->orgName . '</td>';
                 echo '<td>' . $response[$i]->orgEmail . '</td>';
-                echo '<td>' . $response[$i]->orgStatus . '</td>';
+                if ($response[$i]->orgStatus == 1) {
+                    echo '<td>Approved</td>';
+                } else {
+                    echo '<td>Pending</td>';
+                }
                 echo '<td>';
                 echo '<a href="org_detail.php?id=' . $response[$i]->orgId . '" class="btn btn-primary">View</a>';
                 echo '</td>';

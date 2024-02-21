@@ -28,7 +28,6 @@ include_once 'includes/header.php';
 ?>
 
 <div id="page-wrapper">
-    <input type="hidden" name="id" value="<?php echo $response->campId; ?>">
     <div class="row">
         <h2 class="page-header">Customer Details</h2>
     </div>
@@ -44,9 +43,24 @@ include_once 'includes/header.php';
             <div class="form-group">
                 <label>Create Date </label>
                 <input name="date"
-                    value="<?php echo htmlspecialchars($response->campCreateDate, ENT_QUOTES, 'UTF-8'); ?>"
+                    value="<?php echo htmlspecialchars($response->custCreateDate, ENT_QUOTES, 'UTF-8'); ?>"
                     class="form-control" type="text" readonly>
             </div>
+
+            <div class="form-group">
+                <label for="l_name">Email</label>
+                <input type="text" name="l_name"
+                    value="<?php echo htmlspecialchars($response->custEmail, ENT_QUOTES, 'UTF-8'); ?>"
+                    placeholder="Last Name" class="form-control" required="required" id="l_name" readonly>
+            </div>
+
+            <div class="form-group">
+                <label for="l_name">Phone</label>
+                <input type="text" name="l_name"
+                    value="<?php echo htmlspecialchars($response->custPhone, ENT_QUOTES, 'UTF-8'); ?>"
+                    placeholder="Last Name" class="form-control" required="required" id="l_name" readonly>
+            </div>
+
             <div>
                 <!-- show all organizations campaigns in a table -->
                 <h3>Joined Campaigns</h3>
@@ -55,18 +69,14 @@ include_once 'includes/header.php';
                         <tr>
                             <th width="5%">ID</th>
                             <th width="20%">Campaign Name</th>
-                            <th width="10%">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php
                         for ($i = 0; $i < count($joinedCamp); $i++) {
                             echo '<tr>';
-                            echo '<td>' . $joinedCamp[$i]->campId . '</td>';
-                            echo '<td>' . $joinedCamp[$i]->campName . '</td>';
-                            echo '<td>';
-                            echo '<a href="camp_detail.php?id=' . $joinedCamp[$i]->campId . '" class="btn btn-primary">View</a>';
-                            echo '</td>';
+                            echo '<td>' . $i . '</td>';
+                            echo '<td><a href="camp_detail.php?id=' . $joinedCamp[$i]->campId . '">' . $joinedCamp[$i]->campName . '</a></td>';
                             echo '</tr>';
                         }
                         ?>

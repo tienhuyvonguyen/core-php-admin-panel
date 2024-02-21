@@ -71,7 +71,7 @@ include_once BASE_PATH . '/includes/header.php';
                     continue;
                 }
                 echo '<tr>';
-                echo '<td>' . $response[$i]->campId . '</td>';
+                echo '<td>' . $i . '</td>';
                 echo '<td>' . $response[$i]->campName . '</td>';
                 echo '<td>' . $response[$i]->campHost . '</td>';
                 echo '<td>' . $response[$i]->campLocation . '</td>';

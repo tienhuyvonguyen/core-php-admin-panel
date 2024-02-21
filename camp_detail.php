@@ -24,6 +24,7 @@ $request = new Request('GET', BASE_URL . '/api/campaigns/' . $id, $headers);
 $res = $client->sendAsync($request)->wait();
 $response = json_decode($res->getBody()->getContents());
 $id = $response->campId;
+$members = $response->members;
 include_once 'includes/header.php';
 ?>
 
@@ -78,6 +79,30 @@ include_once 'includes/header.php';
                 <input name="date"
                     value="<?php echo htmlspecialchars($response->campCreateDate, ENT_QUOTES, 'UTF-8'); ?>"
                     class="form-control" type="text" readonly>
+            </div>
+            <div>
+                <!-- show all organizations campaigns in a table -->
+                <h3>Campaign Member Joined</h3>
+                <table class="table table-striped table-bordered table-condensed">
+                    <thead>
+                        <tr>
+                            <th width="5%">ID</th>
+                            <th width="20%">User Name</th>
+                            <th width="10%">Time</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        for ($i = 0; $i < count($members); $i++) {
+                            echo '<tr>';
+                            echo '<td>' . $i . '</td>';
+                            echo '<td><a href="user_detail.php?id=' . $members[$i]->id . '">' . $members[$i]->member . '</a></td>';
+                            echo '<td>' . $members[$i]->joinTime . '</td>';
+                            echo '</tr>';
+                        }
+                        ?>
+                    </tbody>
+                </table>
             </div>
 
             <div class="form-group text-center">

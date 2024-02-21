@@ -52,7 +52,6 @@ include_once BASE_PATH . '/includes/header.php';
                 <th width="3%">ID</th>
                 <th width="40%">Customer Name</th>
                 <th width="20%">Customer Email</th>
-                <th width="20%">Status</th>
                 <th width="10%">Actions</th>
             </tr>
         </thead>
@@ -66,7 +65,6 @@ include_once BASE_PATH . '/includes/header.php';
                 echo '<td>' . $response[$i]->custId . '</td>';
                 echo '<td>' . $response[$i]->custName . '</td>';
                 echo '<td>' . $response[$i]->custEmail . '</td>';
-                echo '<td>' . $response[$i]->custStatus . '</td>';
                 echo '<td>';
                 echo '<a href="user_detail.php?id=' . $response[$i]->custId . '" class="btn btn-primary">View</a>';
                 echo '</td>';
