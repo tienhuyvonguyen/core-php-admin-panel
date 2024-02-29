@@ -13,5 +13,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $res = $client->sendAsync($request)->wait();
     // alert message
     $_SESSION['info'] = "Remove campaign successfully!";
-    header('Location: running_camp.php');
+    header('Location: pending_camp.php');
 }
